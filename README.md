@@ -4,11 +4,11 @@
 [![Packagist](https://img.shields.io/packagist/v/egobytes/ego-docs-laravel)](https://packagist.org/packages/egobytes/ego-docs-laravel)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-> **English summary.** Laravel integration for [EGO docs](https://egobytes.com), an in-app help assistant that answers only from each system's own documentation. This package prints the widget script (`@egodocs`), signs a short-lived HS256 token with the signed-in user's id, name, roles and locale, supports one widget per auth guard, and syncs the catalog of screens the assistant may link to (`php artisan egodocs:accesos`). Requires PHP 8.2+ and Laravel 11, 12 or 13. The rest of this document is in Spanish.
+> **English summary.** Laravel integration for [EGO docs](https://egobytes.com), an in-app help assistant that answers only from each system's own documentation. This package prints the widget script (`@egodocs`), signs a short-lived HS256 token with the signed-in user's id, name, roles and locale, supports one widget per auth guard, and syncs the catalog of screens the assistant may link to (`php artisan egodocs:accesos`). Requires PHP 8.2+ and Laravel 12 or 13. The rest of this document is in Spanish.
 
 Pone el asistente de ayuda de EGO docs dentro de un sistema Laravel: el botón de chat que responde con la documentación del sistema y lleva a la persona a la pantalla donde se hace cada cosa.
 
-**Requisitos:** PHP 8.2 o superior y Laravel 11, 12 o 13. Una cuenta de EGO docs con un widget creado para el sistema.
+**Requisitos:** PHP 8.2 o superior y Laravel 12 o 13 (Laravel 13 pide PHP 8.3). Una cuenta de EGO docs con un widget creado para el sistema.
 
 El paquete hace tres cosas:
 
