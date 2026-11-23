@@ -96,7 +96,14 @@ EgoDocs::identificarCon(fn ($usuario, string $guard) => [
 
 Los roles se comparan con los que se asignan en EGO docs a cada documento y a cada acceso: quien no tiene el rol no ve ese contenido ni ese botón.
 
-El token vence en una hora (`EGODOCS_VIGENCIA`, en segundos) y se firma de nuevo en cada carga de página. En una aplicación de una sola página que dure más, se puede renovar sin recargar:
+El token vence en una hora (`EGODOCS_VIGENCIA`, en segundos) y se firma de nuevo en cada carga de página.
+
+En una aplicación de una sola página (Inertia, Livewire) la página no se recarga al cambiar de pantalla, así que el token vencería con la pestaña abierta. Para eso el paquete registra la ruta `GET /egodocs/token?guard=…`, que firma uno nuevo con la sesión del propio sistema, y el script le dice al widget dónde está (`data-renovar`). Cuando EGO docs rechaza un token vencido, el widget pide otro ahí y repite la pregunta, sin que la persona note nada. No hay que hacer nada más.
+
+- La ruta usa el grupo de middleware `web` y solo firma para quien ya tiene sesión en ese guard.
+- Se cambia con `EGODOCS_RUTA_TOKEN`. Vacía, no se registra y el widget no renueva.
+
+También se puede renovar a mano desde JavaScript:
 
 ```js
 EgoDocs.identificar(nuevoToken)

@@ -26,6 +26,9 @@ abstract class TestCase extends Base
         $app['config']->set('auth.guards.admin', ['driver' => 'session', 'provider' => 'users']);
         $app['config']->set('auth.guards.mechanics', ['driver' => 'session', 'provider' => 'users']);
 
+        // La ruta para renovar el token pasa por el grupo `web`, que cifra la sesión.
+        $app['config']->set('app.key', 'base64:'.base64_encode(str_repeat('k', 32)));
+
         $app['config']->set('ego-docs.url', 'https://docs.ejemplo.com/');
         $app['config']->set('ego-docs.widgets', [
             'admin' => ['clave' => 'pk_admin', 'secreto' => self::SECRETO_ADMIN],

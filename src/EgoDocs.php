@@ -4,6 +4,7 @@ namespace EgoBytes\EgoDocs;
 
 use Closure;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\HtmlString;
 
 /**
@@ -157,11 +158,17 @@ class EgoDocs
             return new HtmlString('');
         }
 
+        $token = static::token(null, $widget['guard']);
+
         $atributos = array_filter([
             'src' => "{$url}/widget/egodocs.js",
             'data-clave' => $widget['clave'],
-            'data-token' => static::token(null, $widget['guard']),
+            'data-token' => $token,
             'data-idioma' => app()->getLocale(),
+            // Con sesión, dónde pedir otro token cuando este venza.
+            'data-renovar' => $token && Route::has('egodocs.token')
+                ? route('egodocs.token', ['guard' => $widget['guard']], false)
+                : null,
         ]);
 
         $html = collect($atributos)->map(fn ($valor, $nombre) => $nombre.'="'.e($valor).'"')->implode(' ');

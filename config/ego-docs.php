@@ -34,6 +34,13 @@ return [
     'vigencia' => (int) env('EGODOCS_VIGENCIA', 3600),
 
     /*
+     * La dirección, dentro de este sistema, donde el widget pide un token
+     * nuevo cuando el suyo vence (una pestaña abierta más de una hora sin
+     * recargar). Usa la sesión del sistema. Vacía, no se registra.
+     */
+    'ruta_token' => env('EGODOCS_RUTA_TOKEN', 'egodocs/token'),
+
+    /*
      * Las pantallas a las que el bot puede llevar a una persona, por guard.
      * Se mandan a EGO docs con `php artisan egodocs:accesos`.
      *

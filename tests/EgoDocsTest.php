@@ -44,7 +44,7 @@ class EgoDocsTest extends TestCase
         $html = Blade::render('@egodocs');
 
         $this->assertMatchesRegularExpression(
-            '#^<script src="https://docs\.ejemplo\.com/widget/egodocs\.js" data-clave="pk_admin" data-token="[^"]+" data-idioma="es" defer></script>$#',
+            '#^<script src="https://docs\.ejemplo\.com/widget/egodocs\.js" data-clave="pk_admin" data-token="[^"]+" data-idioma="es" data-renovar="/egodocs/token\?guard=admin" defer></script>$#',
             $html,
         );
     }
